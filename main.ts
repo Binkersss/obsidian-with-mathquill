@@ -1,12 +1,8 @@
 import { App, Editor, MarkdownView, Modal, Notice, Plugin, PluginSettingTab, Setting } from 'obsidian';
-import $ from 'jquery'; // Import jQuery first
+import "jquery";
 import "./mathquill.js"; // Then import MathQuill
 import "./mathquill.css"; // And MathQuill CSS
 
-// Make jQuery available globally for MathQuill
-window.$ = window.jQuery = $.noConflict(true);
-
-// Remember to rename these classes and interfaces!
 
 interface MathQuillPluginSettings {
 	mySetting: string;
@@ -20,6 +16,7 @@ export default class MathQuillPlugin extends Plugin {
 	settings: MathQuillPluginSettings;
 
 	async onload() {
+		await this.loadJQuery();
 		await this.loadSettings();
 		console.log('Mathquill Plugin loaded');
 
@@ -59,6 +56,19 @@ export default class MathQuillPlugin extends Plugin {
 		// When registering intervals, this function will automatically clear the interval when the plugin is disabled.
 		this.registerInterval(window.setInterval(() => console.log('setInterval'), 5 * 60 * 1000));
 	}
+
+	loadJQuery(): Promise<void> {
+        return new Promise((resolve, reject) => {
+            const jQueryScript = document.createElement("script");
+            jQueryScript.src = "https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"; // Google CDN URL
+            jQueryScript.onload = () => {
+                window.$ = window.jQuery = $.noConflict(true); // Ensure jQuery is available globally
+                resolve(); // Resolve the promise when jQuery is loaded
+            };
+            jQueryScript.onerror = () => reject(new Error("Failed to load jQuery"));
+            document.head.appendChild(jQueryScript);
+        });
+    }
 
 	onunload() {
 		console.log('MathQuill Plugin unloaded');
