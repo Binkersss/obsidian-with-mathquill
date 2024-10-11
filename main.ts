@@ -30,7 +30,7 @@ export default class MathQuillPlugin extends Plugin {
 
 				const MQ = (window as any).MathQuill.getInterface(2); // Get Mathquill interface
 				const mathField = MQ.MathField(container, {
-					spaceBeahveLiveTab: true;
+					spaceBeahveLiveTab: true,
 					handles: {
 						edit: () => {
 							const enteredMath = mathField.latex();
@@ -102,9 +102,9 @@ class SampleModal extends Modal {
 }
 
 class SampleSettingTab extends PluginSettingTab {
-	plugin: MyPlugin;
+	plugin: MathQuillPlugin;
 
-	constructor(app: App, plugin: MyPlugin) {
+	constructor(app: App, plugin: MathQuillPlugin) {
 		super(app, plugin);
 		this.plugin = plugin;
 	}
