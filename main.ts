@@ -1,6 +1,10 @@
 import { App, Editor, MarkdownView, Modal, Notice, Plugin, PluginSettingTab, Setting } from 'obsidian';
-import "./mathquill.js";
-import "./mathquill.css"
+import $ from 'jquery'; // Import jQuery first
+import "./mathquill.js"; // Then import MathQuill
+import "./mathquill.css"; // And MathQuill CSS
+
+// Make jQuery available globally for MathQuill
+window.$ = window.jQuery = $.noConflict(true);
 
 // Remember to rename these classes and interfaces!
 
@@ -44,7 +48,7 @@ export default class MathQuillPlugin extends Plugin {
 		})
 
 		// This adds a settings tab so the user can configure various aspects of the plugin
-		this.addSettingTab(new SampleSettingTab(this.app, this));
+		this.addSettingTab(new MathquillSettingTab(this.app, this));
 
 		// If the plugin hooks up any global DOM events (on parts of the app that doesn't belong to this plugin)
 		// Using this function will automatically remove the event listener when this plugin is disabled.
@@ -101,7 +105,7 @@ class SampleModal extends Modal {
 	}
 }
 
-class SampleSettingTab extends PluginSettingTab {
+class MathquillSettingTab extends PluginSettingTab {
 	plugin: MathQuillPlugin;
 
 	constructor(app: App, plugin: MathQuillPlugin) {

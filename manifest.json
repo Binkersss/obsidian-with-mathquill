@@ -1,11 +1,13 @@
 {
 	"id": "obsidian-with-mathquill",
 	"name": "MathQuill for Obsidian (Desmos Typing)",
-	"version": "0.0.1",
+	"version": "1.0.1",
 	"minAppVersion": "0.15.0",
 	"description": "Integrates mathquill typing (the interface desmos uses) into obsidian.",
 	"author": "Nathaniel Chappelle",
 	"authorUrl": "https://github.com/Binkersss",
 	"fundingUrl": "https://buymeacoffee.com/nathaniel.chappelle",
-	"isDesktopOnly": false
+	"isDesktopOnly": false,
+	"js": "main.js",
+	"css": "styles.css"
 }

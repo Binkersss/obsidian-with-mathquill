@@ -1,2 +1,3 @@
 # Obsidian with Mathquill
-Must run npm install file-loader --save-dev
+esbuild css modules plguin 
+esbuild plugin file loader
